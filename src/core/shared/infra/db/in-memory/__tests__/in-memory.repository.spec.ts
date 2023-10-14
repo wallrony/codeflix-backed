@@ -1,7 +1,7 @@
 import { isEqual } from "lodash";
 import { Entity } from "../../../../../domain/entity";
 import { NotFoundError } from "../../../../../domain/errors/not-found.error";
-import { UUID } from "../../../../../domain/value-objects/uuid.vo";
+import { UUID } from "../../../../domain/value-objects/uuid.vo";
 import { InMemoryRepository } from "../in-memory.repository";
 
 type StubEntityConstructor = {

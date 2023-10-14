@@ -8,6 +8,7 @@ export abstract class ClassValidatorFields implements IValidatorFields {
       groups: fields,
     });
     if (errors.length) {
+      console.log(data, errors);
       for (const error of errors) {
         const field = error.property;
         Object.values(error.constraints!).forEach((message) => {

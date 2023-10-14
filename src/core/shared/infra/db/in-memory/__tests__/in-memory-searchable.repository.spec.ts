@@ -1,5 +1,5 @@
 import { Entity } from "../../../../../domain/entity";
-import { UUID } from "../../../../../domain/value-objects";
+import { UUID } from "../../../../domain/value-objects";
 import { SearchParams } from "../../../../domain/repository/search-params";
 import { SearchResult } from "../../../../domain/repository/search-result";
 import { InMemorySearchableRepository } from "../in-memory.repository";

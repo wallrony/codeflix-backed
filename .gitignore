@@ -1,2 +1,9 @@
 .history/
 node_modules/
+
+# env files
+**/.env.test
+**/.env
+**/.env.development
+**/.env.production
+**/.env.stage

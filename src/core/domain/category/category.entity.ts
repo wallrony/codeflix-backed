@@ -1,5 +1,5 @@
 import { Entity } from "../entity";
-import { UUID } from "../value-objects/uuid.vo";
+import { UUID } from "../../shared/domain/value-objects/uuid.vo";
 import { CategoryFakeBuilder } from "./category-fake.builder";
 import { CategoryValidatorFactory } from "./category.validator";
 
@@ -9,6 +9,7 @@ export type CategoryConstructorProps = {
   description?: string | null;
   isActive?: boolean;
   createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export type CategoryCreateCommand = {
@@ -23,6 +24,7 @@ export class Category extends Entity {
   description: string | null;
   isActive: boolean;
   createdAt: Date;
+  updatedAt: Date;
 
   constructor(props: CategoryConstructorProps) {
     super();
@@ -31,6 +33,7 @@ export class Category extends Entity {
     this.description = props.description ?? null;
     this.isActive = props.isActive ?? true;
     this.createdAt = props.createdAt ?? new Date();
+    this.updatedAt = props.updatedAt ?? new Date();
   }
 
   get entityId() {
@@ -65,7 +68,7 @@ export class Category extends Entity {
 
   validate(fields?: string[]) {
     const validator = CategoryValidatorFactory.create();
-    return validator.validate(this.notification, fields);
+    return validator.validate(this.notification, this, fields);
   }
 
   static fake() {
@@ -79,6 +82,7 @@ export class Category extends Entity {
       description: this.description,
       is_active: this.isActive,
       created_at: this.createdAt,
+      updated_at: this.updatedAt,
     };
   }
 }

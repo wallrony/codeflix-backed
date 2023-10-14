@@ -5,7 +5,8 @@ import { SearchResult } from "./search-result";
 
 export interface IRepository<E extends Entity, EntityId extends ValueObject> {
   insert(entity: E): Promise<void>;
-  update(entity: E): Promise<void>;
+  bulkInsert(entity: E[]): Promise<void>;
+  update(entity: E): Promise<boolean>;
   delete(id: EntityId): Promise<boolean>;
 
   findAll(): Promise<E[]>;
