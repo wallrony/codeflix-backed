@@ -1,10 +1,19 @@
-version: "3"
+version: '3'
 name: codeflix
 services:
   app:
     build: .
     command: ./.docker/start.sh
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - .:/home/node/app
+
+  database:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=codeflix
+      - POSTGRES_PASSWORD=codeflix
+      - POSTGRES_DB=codeflix
+    volumes:
+      - ./.docker/dbdata:/var/lib/postgresql/data

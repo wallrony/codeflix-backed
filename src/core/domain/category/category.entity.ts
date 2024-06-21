@@ -1,10 +1,10 @@
-import { Entity } from "../entity";
-import { UUID } from "../../shared/domain/value-objects/uuid.vo";
-import { CategoryFakeBuilder } from "./category-fake.builder";
-import { CategoryValidatorFactory } from "./category.validator";
+import { Entity } from '../entity';
+import { UUID } from '../../shared/domain/value-objects/uuid.vo';
+import { CategoryFakeBuilder } from './category-fake.builder';
+import { CategoryValidatorFactory } from './category.validator';
 
 export type CategoryConstructorProps = {
-  categoryId?: UUID | null;
+  id?: UUID | null;
   name: string;
   description?: string | null;
   isActive?: boolean;
@@ -19,7 +19,7 @@ export type CategoryCreateCommand = {
 };
 
 export class Category extends Entity {
-  categoryId: UUID;
+  id: UUID;
   name: string;
   description: string | null;
   isActive: boolean;
@@ -28,16 +28,12 @@ export class Category extends Entity {
 
   constructor(props: CategoryConstructorProps) {
     super();
-    this.categoryId = props.categoryId ?? new UUID();
+    this.id = props.id ?? new UUID();
     this.name = props.name;
     this.description = props.description ?? null;
     this.isActive = props.isActive ?? true;
     this.createdAt = props.createdAt ?? new Date();
     this.updatedAt = props.updatedAt ?? new Date();
-  }
-
-  get entityId() {
-    return this.categoryId;
   }
 
   // factory
@@ -50,12 +46,12 @@ export class Category extends Entity {
 
   changeName(name: string): void {
     this.name = name;
-    this.validate(["name"]);
+    this.validate(['name']);
   }
 
   changeDescription(description: string): void {
     this.description = description;
-    this.validate(["description"]);
+    this.validate(['description']);
   }
 
   activate() {
@@ -77,7 +73,7 @@ export class Category extends Entity {
 
   toJSON() {
     return {
-      category_id: this.categoryId.id,
+      id: this.id.id,
       name: this.name,
       description: this.description,
       is_active: this.isActive,

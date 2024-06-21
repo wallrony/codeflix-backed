@@ -1,6 +1,6 @@
-import { Chance } from "chance";
-import { Category } from "./category.entity";
-import { UUID } from "../../shared/domain/value-objects";
+import { Chance } from 'chance';
+import { Category } from './category.entity';
+import { UUID } from '../../shared/domain/value-objects';
 
 type PropOrFactory<T> = T | ((index: number) => T);
 
@@ -17,7 +17,7 @@ export class CategoryFakeBuilder<TBuild = any> {
   // auto generated in entity
   private _createdAt: PropOrFactory<Date> | undefined = undefined;
 
-  private countObjs;
+  private countObjs: number;
 
   static aCategory() {
     return new CategoryFakeBuilder<Category>();
@@ -74,7 +74,7 @@ export class CategoryFakeBuilder<TBuild = any> {
       .fill(undefined)
       .map((_, index) => {
         const category = new Category({
-          categoryId: !this._categoryId
+          id: !this._categoryId
             ? undefined
             : this.callFactory(this._categoryId, index),
           name: this.callFactory(this._name, index),
@@ -90,39 +90,39 @@ export class CategoryFakeBuilder<TBuild = any> {
     return this.countObjs === 1 ? (categories[0] as any) : categories;
   }
 
-  get categoryId() {
-    return this.getValue("categoryId");
+  get id() {
+    return this.getValue('id');
   }
 
   get name() {
-    return this.getValue("name");
+    return this.getValue('name');
   }
 
   get description() {
-    return this.getValue("description");
+    return this.getValue('description');
   }
 
   get isActive() {
-    return this.getValue("isActive");
+    return this.getValue('isActive');
   }
 
   get createdAt() {
-    return this.getValue("createdAt");
+    return this.getValue('createdAt');
   }
 
   private getValue(prop: any) {
-    const optional = ["categoryId", "createdAt"];
+    const optional = ['id', 'createdAt'];
     const privateProp = `_${prop}` as keyof this;
     if (!this[privateProp] && optional.includes(prop)) {
       throw new Error(
-        `Property ${prop} not have a factory, use 'with' methods`
+        `Property ${prop} not have a factory, use 'with' methods`,
       );
     }
     return this.callFactory(this[privateProp], 0);
   }
 
   private callFactory(valueOrFactory: PropOrFactory<any>, index: number) {
-    return typeof valueOrFactory === "function"
+    return typeof valueOrFactory === 'function'
       ? valueOrFactory(index)
       : valueOrFactory;
   }

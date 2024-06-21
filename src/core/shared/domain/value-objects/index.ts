@@ -1,1 +1,1 @@
-export * from "./uuid.vo";
+export * from './uuid.vo';

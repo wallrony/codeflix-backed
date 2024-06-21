@@ -1,15 +1,15 @@
-import { SearchParams } from "../search-params";
+import { SearchParams } from '../search-params';
 
-describe("SearchParams Unit Tests", () => {
-  test("page prop", () => {
+describe('SearchParams Unit Tests', () => {
+  test('page prop', () => {
     const params = new SearchParams();
     expect(params.page).toBe(1);
 
     const arrange = [
       { page: null, expected: 1 },
       { page: undefined, expected: 1 },
-      { page: "", expected: 1 },
-      { page: "fake", expected: 1 },
+      { page: '', expected: 1 },
+      { page: 'fake', expected: 1 },
       { page: 0, expected: 1 },
       { page: -1, expected: 1 },
       { page: 5.5, expected: 1 },
@@ -26,7 +26,7 @@ describe("SearchParams Unit Tests", () => {
     });
   });
 
-  test("perPage prop", () => {
+  test('perPage prop', () => {
     const params = new SearchParams();
     expect(params.perPage).toBe(15);
   });
@@ -34,8 +34,8 @@ describe("SearchParams Unit Tests", () => {
   const perPageArrange = [
     { perPage: null, expected: 15 },
     { perPage: undefined, expected: 15 },
-    { perPage: "", expected: 15 },
-    { perPage: "fake", expected: 15 },
+    { perPage: '', expected: 15 },
+    { perPage: 'fake', expected: 15 },
     { perPage: 0, expected: 15 },
     { perPage: -1, expected: 15 },
     { perPage: 5.5, expected: 15 },
@@ -48,13 +48,13 @@ describe("SearchParams Unit Tests", () => {
     { perPage: 10, expected: 10 },
   ];
 
-  test.each(perPageArrange)("should return %s when perPage is %s", (i) => {
+  test.each(perPageArrange)('should return %s when perPage is %s', (i) => {
     expect(new SearchParams({ perPage: i.perPage as any }).perPage).toBe(
-      i.expected
+      i.expected,
     );
   });
 
-  test("sort prop", () => {
+  test('sort prop', () => {
     const params = new SearchParams();
     expect(params.sort).toBeNull();
   });
@@ -62,21 +62,21 @@ describe("SearchParams Unit Tests", () => {
   const sortArrange = [
     { sort: null, expected: null },
     { sort: undefined, expected: null },
-    { sort: "", expected: null },
-    { sort: 0, expected: "0" },
-    { sort: -1, expected: "-1" },
-    { sort: 5.5, expected: "5.5" },
-    { sort: true, expected: "true" },
-    { sort: false, expected: "false" },
-    { sort: {}, expected: "[object Object]" },
-    { sort: "field", expected: "field" },
+    { sort: '', expected: null },
+    { sort: 0, expected: '0' },
+    { sort: -1, expected: '-1' },
+    { sort: 5.5, expected: '5.5' },
+    { sort: true, expected: 'true' },
+    { sort: false, expected: 'false' },
+    { sort: {}, expected: '[object Object]' },
+    { sort: 'field', expected: 'field' },
   ];
 
-  test.each(sortArrange)("should return %s when sort is %s", (i) => {
+  test.each(sortArrange)('should return %s when sort is %s', (i) => {
     expect(new SearchParams({ sort: i.sort as any }).sort).toBe(i.expected);
   });
 
-  test("sortDir prop", () => {
+  test('sortDir prop', () => {
     let params = new SearchParams();
     expect(params.sortDir).toBeNull();
 
@@ -86,30 +86,30 @@ describe("SearchParams Unit Tests", () => {
     params = new SearchParams({ sort: undefined });
     expect(params.sortDir).toBeNull();
 
-    params = new SearchParams({ sort: "" });
+    params = new SearchParams({ sort: '' });
     expect(params.sortDir).toBeNull();
   });
 
   const sortDirArrange = [
-    { sortDir: null, expected: "asc" },
-    { sortDir: undefined, expected: "asc" },
-    { sortDir: "", expected: "asc" },
-    { sortDir: 0, expected: "asc" },
-    { sortDir: "fake", expected: "asc" },
+    { sortDir: null, expected: 'asc' },
+    { sortDir: undefined, expected: 'asc' },
+    { sortDir: '', expected: 'asc' },
+    { sortDir: 0, expected: 'asc' },
+    { sortDir: 'fake', expected: 'asc' },
 
-    { sortDir: "asc", expected: "asc" },
-    { sortDir: "ASC", expected: "asc" },
-    { sortDir: "desc", expected: "desc" },
-    { sortDir: "DESC", expected: "desc" },
+    { sortDir: 'asc', expected: 'asc' },
+    { sortDir: 'ASC', expected: 'asc' },
+    { sortDir: 'desc', expected: 'desc' },
+    { sortDir: 'DESC', expected: 'desc' },
   ];
 
   test.each(sortDirArrange)('should return "%s" when sortDir is %s', (i) => {
     expect(
-      new SearchParams({ sort: "field", sortDir: i.sortDir as any }).sortDir
+      new SearchParams({ sort: 'field', sortDir: i.sortDir as any }).sortDir,
     ).toBe(i.expected);
   });
 
-  test("filter prop", () => {
+  test('filter prop', () => {
     const params = new SearchParams();
     expect(params.filter).toBeNull();
   });
@@ -117,20 +117,20 @@ describe("SearchParams Unit Tests", () => {
   const filterArrange = [
     { filter: null, expected: null },
     { filter: undefined, expected: null },
-    { filter: "", expected: null },
+    { filter: '', expected: null },
 
-    { filter: 0, expected: "0" },
-    { filter: -1, expected: "-1" },
-    { filter: 5.5, expected: "5.5" },
-    { filter: true, expected: "true" },
-    { filter: false, expected: "false" },
-    { filter: {}, expected: "[object Object]" },
-    { filter: "field", expected: "field" },
+    { filter: 0, expected: '0' },
+    { filter: -1, expected: '-1' },
+    { filter: 5.5, expected: '5.5' },
+    { filter: true, expected: 'true' },
+    { filter: false, expected: 'false' },
+    { filter: {}, expected: '[object Object]' },
+    { filter: 'field', expected: 'field' },
   ];
 
-  test.each(filterArrange)("should return %s when filter is %s", (i) => {
+  test.each(filterArrange)('should return %s when filter is %s', (i) => {
     expect(new SearchParams({ filter: i.filter as any }).filter).toBe(
-      i.expected
+      i.expected,
     );
   });
 });
